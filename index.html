@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jupiter E. Botilla | BSIT Portfolio</title>
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe, #c5e1ff);
+            /* mas soft & elegant blue gradient */
+            color: #0f172a;
+            /* deep navy for main text - better contrast */
+            min-height: 100vh;
+        }
+
+        /* Navbar - Dark contrast para mag-standout */
+        .navbar {
+            background: rgba(15, 23, 42, 0.92) !important;
+            /* deep navy/black */
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .navbar-brand {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #60a5fa !important;
+            /* bright cyan para accent */
+        }
+
+        .nav-link {
+            color: #e2e8f0 !important;
+            /* light gray/white for visibility */
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #60a5fa !important;
+            /* cyan hover */
+            transform: translateY(-3px);
+        }
+
+        /* Profile - Keep pure circle, subtle glow */
+        .profile-wrapper {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(145deg, #ffffff, #f0f9ff);
+            /* clean white-cyan base */
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 6px 20px rgba(255, 255, 255, 0.8);
+            transition: all 0.5s ease;
+        }
+
+        .profile-wrapper:hover {
+            transform: scale(1.08);
+            box-shadow:
+                0 25px 60px rgba(96, 165, 250, 0.4),
+                inset 0 12px 30px rgba(255, 255, 255, 0.9);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Subtle outer ring (no square) */
+        .profile-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 3px solid rgba(96, 165, 250, 0.25);
+            /* soft cyan ring */
+            pointer-events: none;
+        }
+
+        /* Section cards - Cleaner, more depth */
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            /* subtle blue border */
+        }
+
+        /* Headings */
+        h1,
+        h2 {
+            color: #0284c7;
+            /* vibrant blue */
+        }
+
+        h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            /* full width ng h2 text */
+            height: 4px;
+            background: #0284c7;
+            /* solid color para simple */
+            border-radius: 4px;
+        }
+
+        /* Skill cards - Softer hover */
+        .skill-card {
+            background: #ffffff;
+            text-align: center;
+            padding: 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.12);
+            transition: all 0.4s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(96, 165, 250, 0.25);
+            background: #f0f9ff;
+            /* light cyan hover */
+        }
+
+        /* Project cards */
+        .project-card {
+            background: #ffffff;
+            padding: 1.8rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(96, 165, 250, 0.2);
+        }
+
+        /* Buttons */
+        .btn-primary-custom {
+            background: #0284c7;
+            border: none;
+            padding: 0.75rem 1.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary-custom:hover {
+            background: #0369a1;
+            transform: translateY(-3px);
+        }
+
+        /* Muted text */
+        .text-muted {
+            color: #475569 !important;
+        }
+
+        /* Footer */
+        footer {
+            color: #64748b;
+            text-align: center;
+            padding: 4rem 0 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .profile-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Jupiter E. Botilla</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pt-5 mt-5">
+        <!-- Home / Profile -->
+        <section id="home" class="text-center fade-in pt-5 mt-5">
+            <div class="profile-wrapper">
+                <img src="jupiter.jpg" alt="Jupiter E. Botilla" class="profile-img" />
+            </div>
+            <h1 class="display-4 fw-bold">Jupiter E. Botilla</h1>
+            <p class="fs-4 text-muted">BS Information Technology | 3rd Year (2025-2026)</p>
+            <p class="fs-5"><i class="fas fa-map-marker-alt me-2"></i>Kampigganon, Bantayan, Cebu</p>
+        </section>
+
+        <!-- About / Objective -->
+        <section id="about" class="section-card fade-in">
+            <h2 class="text-center">About Me / Career Objective</h2>
+            <p class="lead text-center mx-auto" style="max-width: 800px;">
+                Motivated 3rd-year BS Information Technology student passionate about web development and database
+                management. Seeking internship or entry-level opportunities to apply foundational skills in frontend,
+                backend programming, and MySQL database design. Eager to contribute to real-world projects, learn
+                industry best practices, and grow into a reliable full-stack developer while delivering efficient and
+                user-friendly solutions.
+            </p>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section-card fade-in">
+            <h2 class="text-center">Skills</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-lg-3">
+                    <div class="skill-card"><i class="fas fa-code fa-2x mb-3 text-primary"></i>
+                        <h5>HTML5 & CSS3</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="skill-card"><i class="fab fa-js fa-2x mb-3 text-primary"></i>
+                        <h5>JavaScript (Basic)</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="skill-card"><i class="fas fa-server fa-2x mb-3 text-primary"></i>
+                        <h5>Backend Basics</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="skill-card"><i class="fas fa-database fa-2x mb-3 text-primary"></i>
+                        <h5>MySQL Database</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="skill-card"><i class="fas fa-terminal fa-2x mb-3 text-primary"></i>
+                        <h5>Git & GitHub</h5>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="skill-card"><i class="fas fa-search fa-2x mb-3 text-primary"></i>
+                        <h5>Problem Solving</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="section-card fade-in">
+            <h2 class="text-center">Projects</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="project-card h-100 p-4">
+                        <h3>School Entry Monitoring System</h3>
+                        <p>Real-time student entry/exit tracking with parent notifications. Secure logging, user roles,
+                            and MySQL integration.</p>
+                        <p><strong>Tech:</strong> HTML, CSS, JS, Backend, MySQL</p>
+                        <a href="https://schoolproject.wuaze.com/" target="_blank"
+                            class="btn btn-primary-custom mt-3">View Live Demo</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="project-card h-100 p-4">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>Colorful, responsive portfolio with navigation and smooth animations — built from scratch.
+                        </p>
+                        <p><strong>Tech:</strong> HTML5, CSS3, JavaScript</p>
+                        <a href="#" class="btn btn-primary-custom mt-3">View on GitHub (soon)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section-card fade-in">
+            <h2 class="text-center">Contact Information</h2>
+            <div class="row g-4 text-center justify-content-center">
+                <div class="col-md-4">
+                    <div class="p-4 rounded" style="background: rgba(2,132,199,0.08);">
+                        <i class="fas fa-envelope fa-2x mb-3 text-primary"></i>
+                        <p class="fs-5">botillajupiter@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 rounded" style="background: rgba(2,132,199,0.08);">
+                        <i class="fas fa-phone fa-2x mb-3 text-primary"></i>
+                        <p class="fs-5">0965 738 4314</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 rounded" style="background: rgba(2,132,199,0.08);">
+                        <i class="fas fa-map-marker-alt fa-2x mb-3 text-primary"></i>
+                        <p class="fs-5">Kampigganon, Bantayan, Cebu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Jupiter E. Botilla • All Right Reserved!</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS CDN (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        // Smooth scroll with navbar offset
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight || 70;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = targetPosition - navbarHeight - 30; // adjust 30 kung gusto mo mas maluwag
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Fade-in on scroll (unchanged)
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
